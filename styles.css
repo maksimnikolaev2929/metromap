@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.metro-app {
+    width: 100%;
+    height: 100vh;
+}
+
+.metro-scheme-view {
+    position: absolute;
+    width: 900px;
+    top: 9%;
+    left: 21%;
+}
+
+.route-selector {
+    position: absolute;
+    width: 652px;
+    height: 116px;
+    right: 80px;
+    bottom: 120px;
+    padding: 36px 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.station-input {
+    width: fit-content;
+    height: fit-content;
+}
+
+.input__readonly {
+    font-weight: 700;
+    height: 44px;
+    width: 262px;
+    border-radius: 22px;
+    border: 0;
+    background: #EFEFEF;
+    padding: 0 20px;
+    color: #A5A5A5;
+}
+
+.route-info {
+    position: absolute;
+    width: 358px;
+    height: 539px;
+    right: 80px;
+    bottom: 260px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
+    border-radius: 24px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+}
+
+.time-container {
+    display: flex;
+    font-size: 18px;
+}
+
+.total-time, .label, .station-name {
+    font-weight: 600;
+}
+
+.sub-time, .load-info {
+    font-weight: 700;
+}
+
+.time-icon__wrapper {
+    align-items: center;
+    margin: 0 8px 0 0;
+}
+
+.label__wrapper {
+    padding: 10px 0 0 0;
+    color: #9A9A9A;
+}
+
+.route-step__wrapper {
+    padding: 20px 0;
+    border-bottom: 1px solid #9A9A9A;
+    font-size: 14px;
+}
+
+.route-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #5C5C5C;
+}
+
+.station-transfer-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.sub-time__wrapper {
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+.arrow__icon {
+    margin: 0 0 0 16px;
+}
+
+.station-line__icon {
+    margin: 0 3px 0 0;
+}
+
+.sub-time__icon {
+    margin: 0 4px 0 0;
+}
+
+.first {
+    margin: 0 0 6px 0;
+}
+
+.load-indicator__wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.additional-time {
+    color: #EAD624;
+}
+
+.load-indicator__icon {
+    margin: 0 4px 0 0;
+}
+
+.load-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 10px 0;
+}
