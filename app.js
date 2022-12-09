@@ -61,8 +61,10 @@ let trainStepsAmount = 0;
 let transfersAmount = 0;
 
 function addTrainRouteStep(trainFrom, trainTo, time) {
-    trainStepsAmount += 1;
-    if (transfersAmount > 0) {
+    if ((transfersAmount == 1) && (trainStepsAmount == 0)) {
+        trainStepsAmount += 2;
+    }
+    else {
         trainStepsAmount += 1;
     }
 
@@ -91,21 +93,24 @@ function addTransferRouteStep(transferFrom, transferTo, time, additionalTime, lo
 
     _id = 'loadindicator__circle_t' + transfersAmount;
     _id1 = 'loadindicator__lightning_t' + transfersAmount;
+    _id2 = 'additional_time_t' + transfersAmount;
     if (load < .40) {
-        document.getElementById(_id).classList.add('_lowload_c');
-        document.getElementById(_id1).classList.add('_white_l');
+        document.getElementById(_id).style.fill = '#4D943B';
+        document.getElementById(_id1).style.fill = '#FFFFFF';
+        document.getElementById(_id2).style.color = '#4D943B';
     }
     else if (load < .70) {
-        document.getElementById(_id).classList.add('_midload_c');
-        document.getElementById(_id1).classList.add('_black_l');
+        document.getElementById(_id).style.fill = '#EAD624';
+        document.getElementById(_id1).style.fill = '#000000';
+        document.getElementById(_id2).style.color = '#EAD624';
     }
     else {
-        document.getElementById(_id).classList.add('_highload_c');
-        document.getElementById(_id1).classList.add('_white_l');
+        document.getElementById(_id).style.fill = '#D60303';
+        document.getElementById(_id1).style.fill = '#FFFFFF';
+        document.getElementById(_id2).style.color = '#D60303';
     }
 
-    _id = 'additional_time_t' + transfersAmount;
-    document.getElementById(_id).textContent = '+' + additionalTime +' мин';
+    document.getElementById(_id2).textContent = '+' + additionalTime +' мин';
 
     _id = 'sl__icon_from_t' + transfersAmount;
     document.getElementById(_id).classList.add(transferFrom.slice(0, 5));
@@ -130,10 +135,12 @@ function showRouteDetails(route) {
     transfersAmount = 0;
     let stationCount = 1;
     let trainTime = 0;
+    let totalTime = 0;
 
     for (i = 1; i < route.length; i++) {
         if (route[i - 1].charAt(4) != route[i].charAt(4)) {
-            if (stationCount > 0) {
+            if (stationCount > 1) {
+                totalTime += trainTime;
                 addTrainRouteStep(route[i - stationCount], route[i - 1], trainTime);
                 stationCount = 0;
                 trainTime = 0;
@@ -149,20 +156,50 @@ function showRouteDetails(route) {
             load = stationLoad[route[i - 1]];
             additionalTime = Math.floor(4 * load);
             transferTime += additionalTime;
+            totalTime += transferTime;
 
             addTransferRouteStep(route[i - 1], route[i], transferTime, additionalTime, load);
+            stationCount += 1;
             continue;
         }
 
-        stationCount += 1;
-        trainTime += timings[route[i].slice(0, 5)][i - 1];
+        index = parseInt(route[i].charAt(6), 10);
+        if (route[i].charAt(6) < route[i - 1].charAt(6)) {
+            trainTime += timings[route[i].slice(0, 5)][index];
+        }
+        else {
+            trainTime += timings[route[i].slice(0, 5)][index - 1];
+        }
 
         if (i == (route.length - 1)) {
+            totalTime += trainTime;
             addTrainRouteStep(route[i - stationCount], route[i], trainTime);
         }
-    }
 
+        stationCount += 1;
+    }
+    
+    document.getElementById('total_time').textContent = totalTime + ' мин';
     document.getElementById('route-info').classList.remove('_hidden');
+}
+
+function clearRouteDetails() {
+    document.getElementById('transfer_step1').classList.add('_hidden');
+    document.getElementById('transfer_step2').classList.add('_hidden');
+    document.getElementById('train_step1').classList.add('_hidden');
+    document.getElementById('train_step2').classList.add('_hidden');
+    document.getElementById('train_step3').classList.add('_hidden');
+    document.getElementById('route-info').classList.add('_hidden');
+    document.getElementById('sl__icon_from_1').classList = '';
+    document.getElementById('sl__icon_from_2').classList = '';
+    document.getElementById('sl__icon_from_3').classList = '';
+    document.getElementById('sl__icon_to_1').classList = '';
+    document.getElementById('sl__icon_to_2').classList = '';
+    document.getElementById('sl__icon_to_3').classList = '';
+    document.getElementById('sl__icon_from_t1').classList = '';
+    document.getElementById('sl__icon_from_t2').classList = '';
+    document.getElementById('sl__icon_to_t1').classList = '';
+    document.getElementById('sl__icon_to_t2').classList = '';
 }
 
 function findPath(start, visited = new Set(), route = new Array()) {
@@ -175,7 +212,6 @@ function findPath(start, visited = new Set(), route = new Array()) {
             return route;
         }
         if (!visited.has(destination)) {
-            console.log(destination);
             result = findPath(destination, visited, route);
             if ((result === null) && (route.length != 1)) {
                 route.pop()
@@ -215,7 +251,6 @@ function highlightRoute(route) {
     let highlighted = [...route];
     for (let i = 0; i < route.length; i++) {
         if (i != 0) {
-            console.log(route[i - 1].charAt(6));
             if (route[i - 1].charAt(6) > route[i].charAt(6)) {
                 highlighted.push(route[i] + '-' + route[i - 1]);
             }
@@ -225,7 +260,6 @@ function highlightRoute(route) {
         }
     }
     fadeAll();
-    console.log(highlighted)
     highlighted.forEach((id) => {
         document.getElementById(id).classList.add('_highlighted');
     })
@@ -253,6 +287,7 @@ function stationSelect(id) {
             document.getElementById('to_remove').classList.remove('_line2');
             document.getElementById('to_remove').classList.add(_classname);
             document.getElementById("to_remove").value = stationNames[id];
+            clearRouteDetails();
             removeFade();
         }
     }
@@ -277,6 +312,7 @@ function removeHandler(id) {
         toSelected = null;
     }
     removeFade();
+    clearRouteDetails();
     document.getElementById('route-info').classList.add('_hidden');
 }
 
@@ -303,6 +339,7 @@ function swapStations() {
         toRemove.value = stationNames[toSelected];
 
         removeFade();
+        clearRouteDetails();
 
         route = findPath(fromSelected);
         highlightRoute(route);
