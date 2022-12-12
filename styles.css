@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 * {
     box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
 }
 
 *:focus {
@@ -11,7 +10,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
 }
 
 .metro-app {
@@ -200,4 +198,8 @@ g {
 
 .line2 {
     fill: #ADACAC;
+}
+
+._bold {
+    font-weight: 700;
 }

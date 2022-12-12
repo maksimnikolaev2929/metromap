@@ -271,15 +271,18 @@ function stationSelect(id) {
         _classname = '_' + id.slice(0, 5);
         document.getElementById('from_remove').classList.add(_classname);
         document.getElementById("from_remove").value = stationNames[id];
+        document.getElementById(id).classList.add('_bold');
     }
     else if ((toSelected == null) && (id != fromSelected)) {
         toSelected = id;
         _classname = '_' + id.slice(0, 5);
         document.getElementById('to_remove').classList.add(_classname);
         document.getElementById("to_remove").value = stationNames[id];
+        document.getElementById(id).classList.add('_bold');
     }
     else {
         if ((id != toSelected) && (id != fromSelected)) {
+            document.getElementById(toSelected).classList.remove('_bold');
             toSelected = id;
             _classname = '_' + id.slice(0, 5);
             document.getElementById('to_remove').classList.remove('_line0');
@@ -287,6 +290,7 @@ function stationSelect(id) {
             document.getElementById('to_remove').classList.remove('_line2');
             document.getElementById('to_remove').classList.add(_classname);
             document.getElementById("to_remove").value = stationNames[id];
+            document.getElementById(id).classList.add('_bold')
             clearRouteDetails();
             removeFade();
         }
@@ -304,10 +308,12 @@ function removeHandler(id) {
     inputField.classList.remove('_line1');
     inputField.classList.remove('_line2');
     if (id == 'from_remove') {
+        document.getElementById(fromSelected).classList.remove('_bold');
         inputField.value = 'Откуда';
         fromSelected = null;
     }
     else {
+        document.getElementById(toSelected).classList.remove('_bold');
         inputField.value = 'Куда'
         toSelected = null;
     }
