@@ -8,27 +8,56 @@
 }
 
 body {
+    width: 100%;
+    height:100vh;
     margin: 0;
     padding: 0;
+    font-size: 16px;
+}
+
+.body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .metro-app {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.metro-app__scheme-container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .metro-scheme-view {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    position: relative;
+    touch-action: none;
+    transition: opacity .2s;
+    transition-delay: .1s;
+}
+
+.metro-scheme-view__scheme-container {
+    overflow: visible;
+    outline: 0;
     position: absolute;
-    width: 900px;
-    top: 9%;
-    left: 21%;
 }
 
 .metro-scheme-view svg * {
     user-select: none;
 }
 
-g {
+#main_map > g {
     cursor: pointer;
 }
 
@@ -36,10 +65,10 @@ g {
     position: absolute;
     width: 652px;
     height: 116px;
-    right: 80px;
-    bottom: 120px;
+    right: 40px;
+    bottom: 60px;
     padding: 36px 32px;
-    background: #FFFFFF;
+    background: #494949;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
     border-radius: 24px;
     display: flex;
@@ -59,9 +88,9 @@ g {
     width: 262px;
     border-radius: 22px;
     border: 0;
-    background: #EFEFEF;
+    background: #F5F5F5;
     padding: 0 20px;
-    color: #A5A5A5;
+    color: #494949;
     user-select: none;
     cursor: pointer;
 }
@@ -69,9 +98,9 @@ g {
 .route-info {
     position: absolute;
     width: 358px;
-    right: 80px;
-    bottom: 260px;
-    background: #FFFFFF;
+    right: 40px;
+    bottom: 196px;
+    background: #494949;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
     border-radius: 24px;
     padding: 26px 26px 52px 26px;
@@ -82,6 +111,7 @@ g {
 .time-container {
     display: flex;
     font-size: 18px;
+    color: #ffffff;
 }
 
 .total-time, .label, .station-name {
@@ -99,12 +129,12 @@ g {
 
 .label__wrapper {
     padding: 10px 0 0 0;
-    color: #9A9A9A;
+    color: #ffffff;
 }
 
 .route-step__wrapper {
     padding: 20px 0;
-    border-bottom: 1px solid #9A9A9A;
+    border-bottom: 1px solid #414141;
     font-size: 14px;
 }
 
@@ -112,7 +142,7 @@ g {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #5C5C5C;
+    color: #ffffff;
 }
 
 .station-transfer-indicator {
@@ -184,6 +214,11 @@ g {
     color: #303030;
 }
 
+._line3 {
+    background-color: #D14A43;
+    color: #FFFFFF;
+}
+
 ._hidden {
     display: none;
 }
@@ -200,6 +235,26 @@ g {
     fill: #ADACAC;
 }
 
+.line3 {
+    fill: #D14A43;
+}
+
 ._bold {
     font-weight: 700;
+}
+
+.time-icon {
+    fill: #ffffff;
+}
+
+.load-percent, .sub-time  {
+    color: #ffffff;
+}
+
+.sub-time__icon > path {
+    fill: #ffffff;
+}
+
+.arrow__icon > g > path {
+    fill: #7E7E7E;
 }
