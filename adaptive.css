@@ -5,24 +5,29 @@
         right: 0;
         bottom: 0;
         display: block;
-        padding: 36px 26px;
+        padding: 8px 26px;
         border-radius: 12px 12px 0 0;
     }
 
     .route-info {
         width: 96%;
         right: 2%;
-        bottom: 21%;
+        top: 1%;
+        height: fit-content;
+        padding: 14px 26px 8px 26px;
     }
 
     .input__readonly {
         width: 85%;
-        margin-bottom: 16px;
     }
 
     .swap-icon-container {
         position: absolute;
         right: 26px;
-        top: 43%;
+        top: 40%;
+    }
+
+    #from_remove {
+        margin-bottom: 8px;
     }
 }
