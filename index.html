@@ -493,7 +493,7 @@
         <div class="metro-app__interface-cointainer">
             <div class="route-selector">
                 <span class="station-input from-input">
-                    <input id="from_remove" type="text" class="input__readonly" value="Откуда" onclick="removeHandler(id);return false;" readonly>
+                    <input id="from_remove" type="button" class="input__readonly" value="Откуда" onclick="removeHandler(id);return false;" readonly>
                 </span>
                 <div class="station-input swap-icon-container" id="swap_button" onclick="swapStations();return false;">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -501,7 +501,7 @@
                     </svg>
                 </div>
                 <span class="station-input to-input" >
-                    <input id="to_remove" type="text" class="input__readonly" value="Куда" onclick="removeHandler(id);return false;" readonly>
+                    <input id="to_remove" type="button" class="input__readonly" value="Куда" onclick="removeHandler(id);return false;" readonly>
                 </span>
             </div>
             <div class="route-info _hidden" id="route-info">

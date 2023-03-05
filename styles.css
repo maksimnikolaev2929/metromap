@@ -9,10 +9,11 @@
 
 body {
     width: 100%;
-    height:100vh;
+    height: 96vh;
     margin: 0;
     padding: 0;
     font-size: 16px;
+    touch-action: none;
 }
 
 .body {
@@ -33,7 +34,7 @@ body {
 .metro-app__scheme-container{
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .metro-scheme-view {
@@ -80,10 +81,9 @@ body {
     border: 0;
     background: #F5F5F5;
     padding: 0 20px;
+    text-align: left;
     color: #494949;
-    user-select: none;
     cursor: pointer;
-    touch-action: none;
 }
 
 .route-info {
