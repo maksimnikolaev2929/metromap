@@ -70,7 +70,7 @@ body {
     padding: 36px 32px;
     background: #494949;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
-    border-radius: 24px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,7 +86,7 @@ body {
     font-weight: 700;
     height: 44px;
     width: 262px;
-    border-radius: 22px;
+    border-radius: 6px;
     border: 0;
     background: #F5F5F5;
     padding: 0 20px;
@@ -99,10 +99,10 @@ body {
     position: absolute;
     width: 358px;
     right: 40px;
-    bottom: 196px;
+    bottom: 192px;
     background: #494949;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
-    border-radius: 24px;
+    border-radius: 12px;
     padding: 26px 26px 52px 26px;
     display: flex;
     flex-direction: column;
